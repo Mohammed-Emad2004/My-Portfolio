@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Mohammed Emad Hamdy - Data Engineer & AI Specialist Portfolio. Specializing in high-throughput data pipelines, machine learning, computer vision (YOLOv11), and scalable backend systems.">
+    <meta name="keywords"
+        content="Data Engineering, AI Specialist, Machine Learning, Deep Learning, YOLOv11, Computer Vision, FastAPI, ASP.NET Core, Assiut University">
+    <meta name="author" content="Mohammed Emad Hamdy">
+    <meta property="og:title" content="Mohammed Emad Hamdy - Portfolio">
+    <meta property="og:description"
+        content="Data Engineer & AI Specialist Portfolio showcasing data pipelines, machine learning models, and backend architecture.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mohammed-emad2004.github.io/My-Portfolio/">
+    <meta property="og:image" content="https://mohammed-emad2004.github.io/My-Portfolio/images/mohammed-hackathon.jpeg">
+    <meta property="og:image:alt" content="Mohammed Emad Hamdy at the Upper Egypt AI Hackathon">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mohammed Emad Hamdy - Portfolio">
+    <meta name="twitter:description" content="Data Engineer & AI Specialist Portfolio.">
+    <meta name="twitter:image" content="https://mohammed-emad2004.github.io/My-Portfolio/images/mohammed-hackathon.jpeg">
+    <link rel="canonical" href="https://mohammed-emad2004.github.io/My-Portfolio/">
+
+    <title>Mohammed Emad Hamdy | Data Engineer & AI Specialist</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- External JavaScript -->
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader-content">
+            <div class="loader-initials">MEH</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">MEH</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-left">
+            <div class="availability-tag">🟢 Open to Opportunities</div>
+            <h1 class="hero-title">Mohammed Emad Hamdy</h1>
+            <p class="hero-subtitle">Data Engineer & AI Specialist</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="https://github.com/Mohammed-Emad2004" target="_blank" class="btn btn-secondary">View GitHub</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="orb"></div>
+            <div class="card-ring"></div>
+            <div class="avatar-card" id="heroAvatarCard">
+                <div class="avatar-photo-wrapper">
+                    <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad Hamdy" class="avatar-photo">
+                    <div class="avatar-status-badge">
+                        <span class="status-indicator"></span> Data Engineer
+                    </div>
+                </div>
+                <div class="avatar-meta">
+                    <h3 class="avatar-name">Mohammed Emad</h3>
+                    <div class="avatar-role">Data Engineer & AI Specialist</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">14+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="ageCounter">22</div>
+                        <div class="stat-label">Age</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3.1</div>
+                        <div class="stat-label">GPA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">About Me & Journey</h2>
+
+        <div class="about-grid">
+            <div class="about-narrative">
+                <div class="about-badge">💡 Passion & Engineering</div>
+                <h3 class="about-heading">Transforming Data into Scalable Intelligence & Real-World Impact</h3>
+                <p class="about-text">
+                    I am a passionate <strong>Data Engineer & AI Specialist</strong> studying Computer Science & Artificial Intelligence at <strong>Assiut University</strong> (GPA 3.1/4.0). My journey combines engineering rigor with competitive innovation—from designing robust, high-throughput ETL/ELT pipelines and real-time streaming architectures to deploying edge computer vision (YOLO) and Generative AI systems.
+                </p>
+                <p class="about-text">
+                    Currently interning as a <strong>Data Engineer at DEPI</strong> (Digital Egypt Pioneers Initiative), having previously built scalable services as a <strong>Backend AI Engineer at Fly Rank</strong> and completed intensive FinTech training at <strong>CIB Egypt with a 98.9% score</strong>. When I'm not architecting data workflows, I actively participate in AI hackathons, present technical sessions, and mentor aspiring tech talent at DECI.
+                </p>
+
+                <div class="about-stats-chips">
+                    <div class="about-chip">
+                        <span class="chip-icon">🎓</span>
+                        <div>
+                            <strong>Assiut University</strong>
+                            <small>CS & AI Major (2023–2027)</small>
+                        </div>
+                    </div>
+                    <div class="about-chip">
+                        <span class="chip-icon">⚡</span>
+                        <div>
+                            <strong>DEPI & Fly Rank</strong>
+                            <small>Data & Backend AI Intern</small>
+                        </div>
+                    </div>
+                    <div class="about-chip">
+                        <span class="chip-icon">🏆</span>
+                        <div>
+                            <strong>Upper Egypt AI Hackathon</strong>
+                            <small>Product-Driven AI Innovation</small>
+                        </div>
+                    </div>
+                    <div class="about-chip">
+                        <span class="chip-icon">📈</span>
+                        <div>
+                            <strong>CIB FinTech 98.9%</strong>
+                            <small>Top Performing Program Intern</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-visuals">
+                <!-- Photo Card 1: Upper Egypt AI Hackathon -->
+                <div class="about-card hackathon-card">
+                    <div class="about-card-glow"></div>
+                    <div class="about-card-inner">
+                        <div class="about-img-container">
+                            <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad at Upper Egypt AI Hackathon" class="about-img">
+                            <span class="img-badge hackathon-badge">🏆 Upper Egypt AI Hackathon</span>
+                        </div>
+                        <div class="about-card-info">
+                            <h4>Ready For Tomorrow</h4>
+                            <p>Turning AI ideas into scalable, real-world products through rapid prototyping and collaboration.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo Card 2: Tech Speaker & Pitching -->
+                <div class="about-card speaker-card">
+                    <div class="about-card-glow"></div>
+                    <div class="about-card-inner">
+                        <div class="about-img-container">
+                            <img src="images/mohammed-speaker.jpeg" alt="Mohammed Emad Presenting on Stage" class="about-img">
+                            <span class="img-badge speaker-badge">🎙️ Tech Speaker & Pitching</span>
+                        </div>
+                        <div class="about-card-info">
+                            <h4>Leadership & Public Speaking</h4>
+                            <p>Presenting innovative AI architectures on stage, pitching solutions, and mentoring upcoming engineers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Skills & Expertise</h2>
+
+        <div class="skills-container">
+            <div>
+                <div class="skill-category">
+                    <div class="skill-category-title">Programming Languages</div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>SQL</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>C#</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>C++</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Java</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 86%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>R</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 84%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Go</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Data Engineering</div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>ETL/ELT Pipelines</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Data Warehousing</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Data Modeling</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Apache Spark</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Apache Kafka</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 84%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Apache Airflow</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 83%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Data Analytics & Visualization</div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Power BI</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Pandas & NumPy</span>
+                            <span class="skill-level">Expert</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Tableau</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 82%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Excel & Google Sheets</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="skill-category">
+                    <div class="skill-category-title">AI & Machine Learning</div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Generative AI & LLMs</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>RAG Systems & LangChain</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 86%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>YOLOv11 & OpenCV</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 87%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>TensorFlow & PyTorch</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 84%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Scikit-learn</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 86%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>NLP & Hugging Face</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 83%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Backend & Web Frameworks</div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>FastAPI</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Flask & Django</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 86%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Node.js & Express</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 82%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Spring Boot</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 72%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>ASP.NET Core</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">Databases & Cloud</div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>PostgreSQL & MySQL</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>MongoDB & Redis</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 84%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Docker & Kubernetes</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 83%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>AWS & Azure</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span>Git & GitHub</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-fill" style="--fill-width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-cloud">
+            <div class="tech-chip">Python</div>
+            <div class="tech-chip">SQL</div>
+            <div class="tech-chip">R</div>
+            <div class="tech-chip">C#</div>
+            <div class="tech-chip">C++</div>
+            <div class="tech-chip">Java</div>
+            <div class="tech-chip">Go</div>
+            <div class="tech-chip">FastAPI</div>
+            <div class="tech-chip">Flask</div>
+            <div class="tech-chip">Django</div>
+            <div class="tech-chip">Node.js</div>
+            <div class="tech-chip">Express</div>
+            <div class="tech-chip">Spring Boot</div>
+            <div class="tech-chip">ASP.NET Core</div>
+            <div class="tech-chip">YOLOv11</div>
+            <div class="tech-chip">OpenCV</div>
+            <div class="tech-chip">TensorFlow</div>
+            <div class="tech-chip">PyTorch</div>
+            <div class="tech-chip">Scikit-learn</div>
+            <div class="tech-chip">LangChain</div>
+            <div class="tech-chip">Hugging Face</div>
+            <div class="tech-chip">Generative AI</div>
+            <div class="tech-chip">RAG Systems</div>
+            <div class="tech-chip">NLP</div>
+            <div class="tech-chip">Apache Spark</div>
+            <div class="tech-chip">Apache Kafka</div>
+            <div class="tech-chip">Apache Airflow</div>
+            <div class="tech-chip">ETL/ELT</div>
+            <div class="tech-chip">dbt</div>
+            <div class="tech-chip">Snowflake</div>
+            <div class="tech-chip">BigQuery</div>
+            <div class="tech-chip">Power BI</div>
+            <div class="tech-chip">Tableau</div>
+            <div class="tech-chip">Pandas</div>
+            <div class="tech-chip">NumPy</div>
+            <div class="tech-chip">PostgreSQL</div>
+            <div class="tech-chip">MySQL</div>
+            <div class="tech-chip">MongoDB</div>
+            <div class="tech-chip">Redis</div>
+            <div class="tech-chip">Docker</div>
+            <div class="tech-chip">Kubernetes</div>
+            <div class="tech-chip">AWS</div>
+            <div class="tech-chip">Azure</div>
+            <div class="tech-chip">REST APIs</div>
+            <div class="tech-chip">GraphQL</div>
+            <div class="tech-chip">Git</div>
+            <div class="tech-chip">CI/CD</div>
+            <div class="tech-chip">Stripe API</div>
+            <div class="tech-chip">Terraform</div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="timeline">
+            <div class="timeline-item" style="animation-delay: 0s;">
+                <div class="timeline-dot"></div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Data Engineer Intern</div>
+                            <div class="job-company">Digital Egypt Pioneers Initiative (DEPI)</div>
+                        </div>
+                        <div class="job-badge">CURRENT</div>
+                    </div>
+                    <div class="job-date">Jul. 2026 – Present | Cairo, Egypt</div>
+                    <div class="job-description">Engineered robust data pipelines and executed comprehensive ETL/ELT
+                        processes on enterprise relational databases, ensuring data quality and compliance at scale.
+                    </div>
+                    <div class="job-highlights">
+                        <span class="highlight-chip">ETL Pipelines</span>
+                        <span class="highlight-chip">Data Engineering</span>
+                        <span class="highlight-chip">Databases</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="animation-delay: 0.1s;">
+                <div class="timeline-dot"></div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Backend AI Engineer</div>
+                            <div class="job-company">Fly Rank</div>
+                        </div>
+                        <div class="job-badge">INTERN</div>
+                    </div>
+                    <div class="job-date">Jul. 2026 – Aug. 2026 | Cairo, Egypt</div>
+                    <div class="job-description">Developed scalable backend services, RESTful APIs, and integrated
+                        machine learning inference workflows for production environments.</div>
+                    <div class="job-highlights">
+                        <span class="highlight-chip">Backend Development</span>
+                        <span class="highlight-chip">REST APIs</span>
+                        <span class="highlight-chip">ML Integration</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="animation-delay: 0.2s;">
+                <div class="timeline-dot"></div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Data & AI Summer Intern</div>
+                            <div class="job-company">Commercial International Bank (CIB Egypt)</div>
+                        </div>
+                        <div class="job-badge">INTERN</div>
+                    </div>
+                    <div class="job-date">Jul. 2026 – Aug. 2026 | Cairo, Egypt</div>
+                    <div class="job-description">Completed FinTech curriculum with 98.9% score. Analyzed banking
+                        architectures, ACID compliance, real-time CDC, and AML fraud detection. Explored GenAI &
+                        deterministic RAG for KYC parsing.</div>
+                    <div class="job-highlights">
+                        <span class="highlight-chip">FinTech</span>
+                        <span class="highlight-chip">Generative AI</span>
+                        <span class="highlight-chip">RAG Systems</span>
+                        <span class="highlight-chip">AML Detection</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="animation-delay: 0.25s;">
+                <div class="timeline-dot"></div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">AI Innovator & Hackathon Competitor</div>
+                            <div class="job-company">Upper Egypt AI Hackathon (Ready For Tomorrow)</div>
+                        </div>
+                        <div class="job-badge hackathon-job-badge">🏆 HACKATHON</div>
+                    </div>
+                    <div class="job-date">2026 | Assiut, Egypt</div>
+                    <div class="job-description">Competed in Upper Egypt's premier AI Hackathon under the theme "Turn your AI idea into a real product!". Architected and prototyped an edge-deployable AI solution, integrating computer vision models and presenting the technical architecture and business viability to industry judges.</div>
+                    <div class="job-highlights">
+                        <span class="highlight-chip">AI Prototyping</span>
+                        <span class="highlight-chip">Edge AI</span>
+                        <span class="highlight-chip">Computer Vision</span>
+                        <span class="highlight-chip">Pitching & Product Strategy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="animation-delay: 0.3s;">
+                <div class="timeline-dot"></div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">AI Literacy Participant</div>
+                            <div class="job-company">MCIT & Microsoft (Empower Yourself Initiative)</div>
+                        </div>
+                        <div class="job-badge">TRAINING</div>
+                    </div>
+                    <div class="job-date">Jun. 2026 | Cairo, Egypt</div>
+                    <div class="job-description">Acquired applied machine learning concepts and algorithm engineering
+                        fundamentals through Microsoft's structured AI literacy program.</div>
+                    <div class="job-highlights">
+                        <span class="highlight-chip">Machine Learning</span>
+                        <span class="highlight-chip">Algorithms</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="animation-delay: 0.4s;">
+                <div class="timeline-dot"></div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Tutor Assistant</div>
+                            <div class="job-company">Digital Egypt Cubs Initiative (DECI)</div>
+                        </div>
+                        <div class="job-badge">MENTOR</div>
+                    </div>
+                    <div class="job-date">2025 | Cairo, Egypt</div>
+                    <div class="job-description">Mentored students in foundational computer science concepts,
+                        programming logic, and algorithm design, fostering critical thinking and problem-solving skills.
+                    </div>
+                    <div class="job-highlights">
+                        <span class="highlight-chip">Mentoring</span>
+                        <span class="highlight-chip">CS Education</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="projects-header-wrapper">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-badge-tag">
+                <span>⭐</span> Curated Highlights • 14+ Projects Built
+            </div>
+        </div>
+        <p class="projects-intro-subtitle">
+            Showcasing <strong>7 featured flagship systems</strong> below (high-impact data pipelines, AI models, and backend architectures). 
+            An additional collection of <strong>14+ open-source projects, tools, and algorithms</strong> is maintained on GitHub.
+        </p>
+
+        <div class="projects-grid">
+            <div class="project-card" style="animation-delay: 0s;">
+                <div class="project-emoji">👁️</div>
+                <div class="project-name">Eyra – AI Assistive Vision</div>
+                <div class="project-description">Real-time computer vision pipeline for the visually impaired, combining
+                    YOLOv8 object detection with EasyOCR text recognition and offline TTS audio feedback at sub-second
+                    latency.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">YOLOv8</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Edge AI</span>
+                </div>
+            </div>
+
+            <div class="project-card" style="animation-delay: 0.1s;">
+                <div class="project-emoji">💳</div>
+                <div class="project-name">Usage Metering & Billing</div>
+                <div class="project-description">Scalable SaaS metering engine featuring real-time event ingestion,
+                    tenant-scoped idempotency, LLM token cost computation, and automated Stripe subscription billing.
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Stripe API</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">REST APIs</span>
+                </div>
+            </div>
+
+            <div class="project-card" style="animation-delay: 0.2s;">
+                <div class="project-emoji">📊</div>
+                <div class="project-name">Sales Analytics Dashboard</div>
+                <div class="project-description">Engineered automated data cleaning pipeline and designed interactive
+                    Power BI dashboards tracking business KPIs, revenue trends, and performance metrics.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Power BI</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Analytics</span>
+                </div>
+            </div>
+
+            <div class="project-card" style="animation-delay: 0.3s;">
+                <div class="project-emoji">❤️</div>
+                <div class="project-name">Heart Disease Prediction</div>
+                <div class="project-description">End-to-end ML classification pipeline with data preprocessing, feature
+                    engineering, and cross-validation using Scikit-learn for medical diagnostics.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Scikit-learn</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">ML</span>
+                </div>
+            </div>
+
+            <div class="project-card" style="animation-delay: 0.4s;">
+                <div class="project-emoji">🔤</div>
+                <div class="project-name">Motorix Programming Language</div>
+                <div class="project-description">Custom language interpreter inspired by C++ syntax with lexical
+                    analysis, abstract syntax tree parsing, and comprehensive syntax validation.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Parsing</span>
+                    <span class="tech-tag">Compilers</span>
+                </div>
+            </div>
+
+            <div class="project-card" style="animation-delay: 0.5s;">
+                <div class="project-emoji">🗂️</div>
+                <div class="project-name">FAT File System Simulator</div>
+                <div class="project-description">OS file system simulator implementing memory block allocation,
+                    directory structures, and file read/write operations with full CRUD functionality.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OS Concepts</span>
+                    <span class="tech-tag">Systems</span>
+                </div>
+            </div>
+
+            <div class="project-card" style="animation-delay: 0.6s;">
+                <div class="project-emoji">✈️</div>
+                <div class="project-name">Egypt Tourism Platform</div>
+                <div class="project-description">Dynamic Flask web application with scalable MySQL schema, secure CRUD
+                    operations, and multilingual navigation for tourism management.</div>
+                <div class="project-tech">
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Web Dev</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub 14+ Projects Showcase Banner -->
+        <div class="github-showcase-banner">
+            <div class="github-showcase-glow"></div>
+            <div class="github-showcase-content">
+                <div class="github-showcase-badge">
+                    <span>🐙</span>
+                    <span>14+ Open Source Repositories</span>
+                </div>
+                <h3 class="github-showcase-title">Looking for More? Explore All 14+ Projects on GitHub</h3>
+                <p class="github-showcase-desc">
+                    Beyond these 7 featured flagship systems, explore my complete catalog of 14+ repositories—including distributed ETL pipelines, deep learning experiments, custom compilers, system simulators, and full-stack services.
+                </p>
+                <div class="github-showcase-tags">
+                    <span class="gh-tag">Data Engineering</span>
+                    <span class="gh-tag">Computer Vision</span>
+                    <span class="gh-tag">FastAPI & Microservices</span>
+                    <span class="gh-tag">Algorithms & DSA</span>
+                    <span class="gh-tag">Research Prototyping</span>
+                </div>
+            </div>
+            <div class="github-showcase-action">
+                <a href="https://github.com/Mohammed-Emad2004" target="_blank" rel="noopener noreferrer" class="btn btn-github-showcase">
+                    <span>Explore GitHub Repositories (14+)</span>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <h2 class="section-title">Education & Languages</h2>
+
+        <div class="education-grid">
+            <div class="edu-card" style="animation-delay: 0s;">
+                <div class="edu-degree">Bachelor of Computer Science & AI</div>
+                <div class="edu-institution">Assiut University</div>
+                <div class="edu-dates">Oct. 2023 – Jul. 2027</div>
+                <div class="edu-gpa">GPA: 3.1/4.0</div>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 1rem;">Focus: Data Engineering,
+                    Data Analytics, and Distributed Software Systems</p>
+            </div>
+        </div>
+
+        <div class="languages-section">
+            <h3 style="font-family: 'Syne', sans-serif; margin-bottom: 1.5rem; font-size: 1.2rem;">Languages</h3>
+            <div class="language-badges">
+                <div class="lang-badge">🇪🇬 Arabic – Native</div>
+                <div class="lang-badge">🇬🇧 English – Fluent</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+
+        <div class="contact-content">
+            <div class="contact-left">
+                <div class="contact-card" style="animation-delay: 0s;">
+                    <div class="contact-label">Email</div>
+                    <a href="mailto:mohammedemadhamdy142@gmail.com" style="text-decoration: none;">
+                        <div class="contact-value">mohammedemadhamdy142@gmail.com</div>
+                    </a>
+                </div>
+
+                <div class="contact-card" style="animation-delay: 0.1s;">
+                    <div class="contact-label">Phone</div>
+                    <a href="tel:+201003703980" style="text-decoration: none;">
+                        <div class="contact-value">+20 100 370 3980</div>
+                    </a>
+                </div>
+
+                <div class="contact-card" style="animation-delay: 0.2s;">
+                    <div class="contact-label">Location</div>
+                    <div class="contact-value">Cairo, Egypt</div>
+                </div>
+
+                <div class="contact-card" style="animation-delay: 0.3s;">
+                    <div class="contact-label">Availability</div>
+                    <div class="contact-value">Open to Opportunities</div>
+                </div>
+
+                <div class="social-icons">
+                    <a href="https://linkedin.com/in/mohammedemadhamdy" target="_blank" class="social-link">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/Mohammed-Emad2004" target="_blank" class="social-link">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-right">
+                <div class="avatar-ripple">
+                    <div class="ripple-ring"></div>
+                    <div class="ripple-ring"></div>
+                    <div class="ripple-ring"></div>
+                    <div class="avatar-center">
+                        <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad Hamdy" class="contact-avatar-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mohammed Emad Hamdy. Crafted with passion and powered by code.</p>
+    </footer>
+</body>
+
+</html>
