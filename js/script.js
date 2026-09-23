@@ -279,7 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         if (navLinks && navLinks.classList.contains('active')) {
                             navLinks.classList.remove('active');
-                            if (menuToggle) menuToggle.classList.remove('active');
+                            if (menuToggle) {
+                                menuToggle.classList.remove('active');
+                                menuToggle.setAttribute('aria-expanded', 'false');
+                            }
                         }
                     }
                 });

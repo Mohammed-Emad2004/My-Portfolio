@@ -1776,6 +1776,121 @@
     }
 }
 
+/* Responsive navigation and touch-friendly layout */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 1.25rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+        width: 32px;
+        height: 24px;
+        padding: 3px 0;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 0.75rem 1.25rem 1rem;
+        background: rgba(15, 15, 30, 0.98);
+        border-bottom: 1px solid rgba(79, 70, 229, 0.35);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    }
+
+    .nav-links.active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 0.85rem 0.25rem;
+        font-size: 1rem;
+    }
+
+    .hero-title {
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+    }
+
+    .section-title {
+        line-height: 1.15;
+    }
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .about-grid,
+    .skills-container,
+    .contact-content,
+    .contact-left,
+    .contact-right,
+    .contact-card,
+    .contact-value {
+        min-width: 0;
+    }
+
+    .contact-value,
+    .contact-value a {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    img,
+    video,
+    canvas {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 9vw, 2.4rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .about,
+    .skills,
+    .experience,
+    .projects,
+    .education,
+    .contact {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
 .hackathon-job-badge {
     background: rgba(245, 158, 11, 0.15) !important;
     border: 1px solid rgba(245, 158, 11, 0.5);
