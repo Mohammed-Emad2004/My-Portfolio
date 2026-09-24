@@ -134,14 +134,10 @@
             justify-content: center;
             align-items: center;
             z-index: 9998;
-            animation: fadeOut 0.8s ease-out 2s forwards;
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                pointer-events: none;
-            }
+            /* FIX: Removed CSS fadeOut animation — JS now handles dismissal exclusively
+               via LoadingScreen.dismiss() to avoid a race condition where both the CSS
+               timer (2s) and JS timer (load + 1500ms) competed to hide the loader. */
+            transition: opacity 0.8s ease-out;
         }
 
         .loader-content {
@@ -922,13 +918,11 @@
             background: linear-gradient(90deg, var(--secondary), var(--accent-cyan));
             width: 0;
             border-radius: 3px;
-            animation: fillBar 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        @keyframes fillBar {
-            to {
-                width: var(--fill-width);
-            }
+            /* FIX: Use transition instead of auto-playing @keyframes animation.
+               The JS IntersectionObserver sets fill.style.width = targetWidth which
+               triggers this transition. The old fillBar keyframe ran immediately on
+               load, bypassing scroll-reveal and conflicting with the JS logic. */
+            transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .skill-fill::after {

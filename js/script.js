@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================================
  * Mohammed Emad Hamdy - Personal Portfolio
  * Interactive Functionality & Animations
@@ -170,6 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+
+            // FIX: Reinitialize particles so they are placed within new canvas bounds
+            if (particles.length > 0) {
+                particles.length = 0;
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
         }
 
         function drawConnections() {
@@ -249,7 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.stopPropagation();
                     const isOpen = navLinks.classList.toggle('active');
                     menuToggle.classList.toggle('active', isOpen);
-                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    // FIX: aria-expanded must be a string, not a boolean
+                    menuToggle.setAttribute('aria-expanded', String(isOpen));
                 });
 
                 // Close mobile menu on outside click
@@ -260,13 +269,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         menuToggle.setAttribute('aria-expanded', 'false');
                     }
                 });
+
+                // FIX: Close mobile menu on Escape key for keyboard accessibility
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        menuToggle.focus();
+                    }
+                });
             }
 
             // Smooth Scroll & Close Mobile Menu
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
-                    if (targetId.startsWith('#')) {
+                    if (targetId && targetId.startsWith('#')) {
                         e.preventDefault();
                         const targetElement = document.querySelector(targetId);
                         if (targetElement) {
@@ -291,12 +310,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // ScrollSpy / Active Link Highlight
             function updateActiveLink() {
                 const scrollPos = window.scrollY + 200;
+                let matched = false;
+
                 sections.forEach(section => {
                     const top = section.offsetTop;
                     const height = section.offsetHeight;
                     const id = section.getAttribute('id');
 
                     if (scrollPos >= top && scrollPos < top + height) {
+                        matched = true;
                         links.forEach(l => {
                             l.classList.remove('active');
                             if (l.getAttribute('href') === `#${id}`) {
@@ -305,6 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
                 });
+
+                // FIX: If no section matched, clear all active states
+                if (!matched) {
+                    links.forEach(l => l.classList.remove('active'));
+                }
             }
 
             window.addEventListener('scroll', updateActiveLink, { passive: true });
@@ -330,12 +357,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('revealed');
 
-                        // Animate skill bars
+                        // FIX: --fill-width is an inline style attribute (not a CSSOM property),
+                        // so getPropertyValue('--fill-width') returns ''. Parse it via getAttribute.
                         const skillFills = entry.target.querySelectorAll('.skill-fill');
                         skillFills.forEach(fill => {
-                            const targetWidth = fill.style.getPropertyValue('--fill-width');
-                            if (targetWidth) {
-                                fill.style.width = targetWidth;
+                            const styleAttr = fill.getAttribute('style') || '';
+                            const match = styleAttr.match(/--fill-width:\s*([^;]+)/);
+                            if (match) {
+                                const targetWidth = match[1].trim();
+                                setTimeout(() => {
+                                    fill.style.width = targetWidth;
+                                }, 150);
                             }
                         });
 
@@ -376,21 +408,32 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        07. LOADING SCREEN DISMISSAL
        Graceful fade out once page resources are fully loaded.
+       FIX: If 'load' event already fired before this handler was registered
+       (e.g., on cached/fast pages), we must check readyState and dismiss directly
+       to avoid the loading screen getting permanently stuck.
        ========================================================================== */
     const LoadingScreen = (() => {
+        function dismiss(loader) {
+            loader.style.opacity = '0';
+            loader.style.pointerEvents = 'none';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 800);
+        }
+
         function init() {
             const loader = document.querySelector('.loading-screen');
             if (!loader) return;
 
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    loader.style.opacity = '0';
-                    loader.style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 800);
-                }, 1500);
-            });
+            if (document.readyState === 'complete') {
+                // Page already fully loaded — dismiss after brief visual pause
+                setTimeout(() => dismiss(loader), 300);
+            } else {
+                // FIX: Use { once: true } to auto-remove the listener after it fires
+                window.addEventListener('load', () => {
+                    setTimeout(() => dismiss(loader), 1500);
+                }, { once: true });
+            }
         }
 
         return { init };
