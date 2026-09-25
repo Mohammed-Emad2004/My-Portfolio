@@ -9,6 +9,14 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const SELECTORS = Object.freeze({
+        ageCounter: '#ageCounter',
+        intro: '.intro-screen',
+        loader: '.loading-screen',
+        hero: '#hero'
+    });
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* ==========================================================================
        01. DYNAMIC AGE CALCULATOR
@@ -32,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function init() {
-            const ageElement = document.getElementById('ageCounter');
+            const ageElement = document.querySelector(SELECTORS.ageCounter);
             if (!ageElement) return;
 
             // Set initial age
@@ -129,10 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const ctx = canvas.getContext('2d');
         const particles = [];
-        const particleCount = 45;
+        const isLowPowerDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+        const particleCount = isLowPowerDevice ? 18 : 34;
         const colors = ['#ec4899', '#06b6d4', '#f59e0b', '#4f46e5'];
-        const maxDistance = 140;
+        const maxDistance = isLowPowerDevice ? 90 : 130;
+        const frameInterval = isLowPowerDevice ? 50 : 33;
+        let lastFrameTime = 0;
         let animationId;
+        let isRunning = false;
 
         class Particle {
             constructor() {
@@ -202,6 +214,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function animate() {
+            if (!isRunning) return;
+            animationId = requestAnimationFrame((timestamp) => {
+                if (timestamp - lastFrameTime < frameInterval) {
+                    animate();
+                    return;
+                }
+                lastFrameTime = timestamp;
+                animateFrame();
+                animate();
+            });
+        }
+
+        function animateFrame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach(p => {
@@ -210,12 +235,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             drawConnections();
-            animationId = requestAnimationFrame(animate);
+        }
+
+        function stop() {
+            isRunning = false;
+            cancelAnimationFrame(animationId);
+        }
+
+        function start() {
+            if (isRunning || document.hidden) return;
+            isRunning = true;
+            lastFrameTime = 0;
+            animate();
         }
 
         function init() {
             // Check prefers-reduced-motion
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            if (prefersReducedMotion) {
                 return;
             }
 
@@ -225,7 +261,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 particles.push(new Particle());
             }
 
-            animate();
+            start();
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) stop();
+                else start();
+            });
 
             let resizeTimeout;
             window.addEventListener('resize', () => {
@@ -250,32 +291,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const links = document.querySelectorAll('.nav-links a');
         const sections = document.querySelectorAll('section[id]');
 
+        function setMenuState(isOpen) {
+            if (!navLinks || !menuToggle) return;
+            navLinks.classList.toggle('active', isOpen);
+            menuToggle.classList.toggle('active', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+        }
+
+        function setActiveLink(sectionId) {
+            links.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
+            });
+        }
+
         function init() {
             // Mobile Menu Toggle
             if (menuToggle && navLinks) {
                 menuToggle.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    const isOpen = navLinks.classList.toggle('active');
-                    menuToggle.classList.toggle('active', isOpen);
-                    // FIX: aria-expanded must be a string, not a boolean
-                    menuToggle.setAttribute('aria-expanded', String(isOpen));
+                    setMenuState(!navLinks.classList.contains('active'));
                 });
 
                 // Close mobile menu on outside click
                 document.addEventListener('click', (e) => {
-                    if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
+                    if (nav && !nav.contains(e.target) && navLinks.classList.contains('active')) {
+                        setMenuState(false);
                     }
                 });
 
                 // FIX: Close mobile menu on Escape key for keyboard accessibility
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
+                        setMenuState(false);
                         menuToggle.focus();
                     }
                 });
@@ -297,11 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             });
                         }
                         if (navLinks && navLinks.classList.contains('active')) {
-                            navLinks.classList.remove('active');
-                            if (menuToggle) {
-                                menuToggle.classList.remove('active');
-                                menuToggle.setAttribute('aria-expanded', 'false');
-                            }
+                            setMenuState(false);
                         }
                     }
                 });
@@ -319,22 +362,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (scrollPos >= top && scrollPos < top + height) {
                         matched = true;
-                        links.forEach(l => {
-                            l.classList.remove('active');
-                            if (l.getAttribute('href') === `#${id}`) {
-                                l.classList.add('active');
-                            }
-                        });
+                        setActiveLink(id);
                     }
                 });
 
                 // FIX: If no section matched, clear all active states
                 if (!matched) {
-                    links.forEach(l => l.classList.remove('active'));
+                    links.forEach(link => link.classList.remove('active'));
                 }
             }
 
-            window.addEventListener('scroll', updateActiveLink, { passive: true });
+            let scrollFrame = 0;
+            const scheduleActiveLinkUpdate = () => {
+                if (scrollFrame) return;
+                scrollFrame = requestAnimationFrame(() => {
+                    scrollFrame = 0;
+                    updateActiveLink();
+                });
+            };
+
+            window.addEventListener('scroll', scheduleActiveLinkUpdate, { passive: true });
             updateActiveLink();
         }
 
@@ -406,34 +453,115 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
     /* ==========================================================================
-       07. LOADING SCREEN DISMISSAL
-       Graceful fade out once page resources are fully loaded.
-       FIX: If 'load' event already fired before this handler was registered
-       (e.g., on cached/fast pages), we must check readyState and dismiss directly
-       to avoid the loading screen getting permanently stuck.
+       07. PORTFOLIO INTRO
+       The intro is intentionally user-controlled so the first screen feels like
+       an opening experience instead of an automatic loading interruption.
        ========================================================================== */
     const LoadingScreen = (() => {
-        function dismiss(loader) {
-            loader.style.opacity = '0';
-            loader.style.pointerEvents = 'none';
+        let hasDismissed = false;
+        const CUBE_COUNT = 34;
+
+        function dismiss(loader, target, cleanup) {
+            if (hasDismissed) return;
+            hasDismissed = true;
+            cleanup();
+            document.body.classList.remove('intro-active');
+            loader.classList.add('is-dismissed');
             setTimeout(() => {
                 loader.style.display = 'none';
+                target?.focus({ preventScroll: true });
             }, 800);
+            if (target) {
+                setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
+            }
         }
 
         function init() {
-            const loader = document.querySelector('.loading-screen');
-            if (!loader) return;
+            const loader = document.querySelector(SELECTORS.loader);
+            const enterButton = document.getElementById('enterPortfolio');
+            const scrollButton = document.getElementById('scrollToPortfolio');
+            const hero = document.querySelector(SELECTORS.hero);
+            const intro = document.querySelector(SELECTORS.intro);
+            if (!loader || !enterButton || !intro) return;
 
-            if (document.readyState === 'complete') {
-                // Page already fully loaded — dismiss after brief visual pause
-                setTimeout(() => dismiss(loader), 300);
-            } else {
-                // FIX: Use { once: true } to auto-remove the listener after it fires
-                window.addEventListener('load', () => {
-                    setTimeout(() => dismiss(loader), 1500);
-                }, { once: true });
+            if (prefersReducedMotion) {
+                intro.classList.add('reduced-motion');
             }
+
+            document.body.classList.add('intro-active');
+            const enterPortfolio = (event) => {
+                if (event?.type === 'click') event.preventDefault();
+                dismiss(loader, hero, cleanup);
+            };
+            const cleanup = () => {
+                window.removeEventListener('wheel', enterPortfolio, true);
+                window.removeEventListener('touchmove', enterPortfolio, true);
+            };
+            enterButton.addEventListener('click', enterPortfolio, { once: true });
+            scrollButton?.addEventListener('click', enterPortfolio, { once: true });
+            window.addEventListener('wheel', enterPortfolio, { passive: true, capture: true });
+            window.addEventListener('touchmove', enterPortfolio, { passive: true, capture: true });
+            const cubeField = document.getElementById('cubeField');
+            const cubes = cubeField ? [...cubeField.querySelectorAll('.cube-shard')] : [];
+            if (cubeField) {
+                for (let index = 0; index < CUBE_COUNT; index++) {
+                    const cube = document.createElement('span');
+                    cube.className = 'cube-shard';
+                    cube.style.setProperty('--cube-x', `${Math.random() * 100}%`);
+                    cube.style.setProperty('--cube-y', `${Math.random() * 100}%`);
+                    cube.style.setProperty('--cube-size', `${4 + Math.random() * 9}px`);
+                    cube.style.setProperty('--cube-delay', `${Math.random() * -3}s`);
+                    cube.style.setProperty('--cube-hue', index % 4 === 0 ? 'pink' : 'cyan');
+                    cubeField.appendChild(cube);
+                    cubes.push(cube);
+                }
+            }
+
+            const cubePositions = cubes.map(cube => ({
+                element: cube,
+                x: parseFloat(cube.style.getPropertyValue('--cube-x')) / 100,
+                y: parseFloat(cube.style.getPropertyValue('--cube-y')) / 100
+            }));
+            let pointerFrame = 0;
+            let latestPointerEvent;
+
+            function updateIntroPointer(event) {
+                const x = (event.clientX / window.innerWidth - 0.5) * 2;
+                const y = (event.clientY / window.innerHeight - 0.5) * 2;
+                intro.style.setProperty('--intro-mx', x.toFixed(3));
+                intro.style.setProperty('--intro-my', y.toFixed(3));
+                intro.style.setProperty('--intro-x', `${((x + 1) * 50).toFixed(2)}%`);
+                intro.style.setProperty('--intro-y', `${((y + 1) * 50).toFixed(2)}%`);
+
+                cubePositions.forEach(({ element, x: normalizedX, y: normalizedY }) => {
+                    const cubeX = normalizedX * window.innerWidth;
+                    const cubeY = normalizedY * window.innerHeight;
+                    const distance = Math.hypot(event.clientX - cubeX, event.clientY - cubeY);
+                    const force = Math.max(0, 1 - distance / 190);
+                    const angle = Math.atan2(cubeY - event.clientY, cubeX - event.clientX);
+                    const pushX = Math.cos(angle) * force * 75;
+                    const pushY = Math.sin(angle) * force * 75;
+                    element.style.setProperty('--push-x', `${pushX.toFixed(1)}px`);
+                    element.style.setProperty('--push-y', `${pushY.toFixed(1)}px`);
+                    element.classList.toggle('cube-breaking', force > 0.08);
+                });
+            }
+
+            intro.addEventListener('mousemove', (event) => {
+                latestPointerEvent = event;
+                if (pointerFrame) return;
+                pointerFrame = requestAnimationFrame(() => {
+                    pointerFrame = 0;
+                    updateIntroPointer(latestPointerEvent);
+                });
+            });
+            intro.addEventListener('mouseleave', () => {
+                intro.style.setProperty('--intro-mx', '0');
+                intro.style.setProperty('--intro-my', '0');
+                intro.style.setProperty('--intro-x', '50%');
+                intro.style.setProperty('--intro-y', '50%');
+                cubes.forEach((cube) => cube.classList.remove('cube-breaking'));
+            });
         }
 
         return { init };

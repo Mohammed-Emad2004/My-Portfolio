@@ -46,12 +46,65 @@
     <!-- Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="loader-content">
-            <div class="loader-initials">MEH</div>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
+    <!-- Animated Portfolio Intro -->
+    <div class="loading-screen intro-screen" aria-labelledby="introTitle">
+        <div class="intro-noise"></div>
+        <div class="intro-grid"></div>
+        <div class="cube-field" id="cubeField" aria-hidden="true">
+            <span class="cube-shard" style="--cube-x: 12%; --cube-y: 24%; --cube-size: 8px; --cube-delay: -1s"></span>
+            <span class="cube-shard" style="--cube-x: 23%; --cube-y: 68%; --cube-size: 5px; --cube-delay: -2s"></span>
+            <span class="cube-shard" style="--cube-x: 42%; --cube-y: 18%; --cube-size: 11px; --cube-delay: -3s"></span>
+            <span class="cube-shard" style="--cube-x: 76%; --cube-y: 23%; --cube-size: 7px; --cube-delay: -1.5s"></span>
+            <span class="cube-shard" style="--cube-x: 88%; --cube-y: 70%; --cube-size: 10px; --cube-delay: -2.5s"></span>
+            <span class="cube-shard" style="--cube-x: 66%; --cube-y: 84%; --cube-size: 6px; --cube-delay: -0.5s"></span>
+            <span class="cube-shard" style="--cube-x: 8%; --cube-y: 82%; --cube-size: 6px; --cube-delay: -3.5s"></span>
+            <span class="cube-shard" style="--cube-x: 94%; --cube-y: 38%; --cube-size: 5px; --cube-delay: -1.8s"></span>
+        </div>
+        <div class="intro-orbit orbit-one"></div>
+        <div class="intro-orbit orbit-two"></div>
+        <div class="intro-shell">
+            <div class="intro-topline">
+                <span><i class="live-dot"></i> SYSTEM INITIALIZING</span>
+                <span>PORTFOLIO.OS / 2026</span>
+            </div>
+
+            <div class="intro-main">
+                <div class="intro-copy">
+                    <div class="intro-kicker"><span>01</span> DIGITAL CONSTRUCTION SITE</div>
+                    <h1 id="introTitle" aria-label="Mohammed Emad Hamdy">
+                        <span class="name-line"><span class="name-word">Mohammed</span></span>
+                        <span class="name-line"><em class="name-word">Emad</em> <span class="name-word">Hamdy</span></span>
+                    </h1>
+                    <p class="intro-role">Data Engineer <b>+</b> AI Specialist</p>
+                    <p class="intro-description">Building reliable data systems, intelligent backends, and products that turn raw signals into useful decisions.</p>
+                    <a class="enter-button" id="enterPortfolio" href="#hero">
+                        <span>Explore Portfolio</span>
+                        <strong>↗</strong>
+                    </a>
+                </div>
+
+                <div class="intro-visual" aria-hidden="true">
+                    <div class="blueprint-label label-top">ARCHITECTURE / 001</div>
+                    <div class="construction-frame">
+                        <div class="frame-corner corner-tl"></div><div class="frame-corner corner-tr"></div>
+                        <div class="frame-corner corner-bl"></div><div class="frame-corner corner-br"></div>
+                        <div class="data-column column-one"><span></span><span></span><span></span><span></span></div>
+                        <div class="data-column column-two"><span></span><span></span><span></span><span></span></div>
+                        <div class="pipeline-line line-one"><i></i><i></i><i></i></div>
+                        <div class="pipeline-line line-two"><i></i><i></i></div>
+                        <div class="core-node"><span class="core-pulse"></span><strong>MEH</strong><small>CORE ENGINE</small></div>
+                        <div class="stage stage-source"><b>01</b><span>DATA</span><small>INGEST</small></div>
+                        <div class="stage stage-ai"><b>02</b><span>AI</span><small>PROCESS</small></div>
+                        <div class="stage stage-api"><b>03</b><span>API</span><small>DEPLOY</small></div>
+                    </div>
+                    <div class="blueprint-label label-bottom">STATUS: BUILDING THE FUTURE</div>
+                </div>
+            </div>
+
+            <div class="intro-bottomline">
+                <div class="build-status"><span class="status-bars"><i></i><i></i><i></i><i></i><i></i></span> BUILD PROGRESS <strong>98.9%</strong></div>
+                <div class="intro-terminal"><span>$</span> run imagination --mode <em>scalable</em><b>_</b></div>
+                <a class="scroll-hint" id="scrollToPortfolio" href="#hero">SCROLL TO EXPLORE <span>↓</span></a>
             </div>
         </div>
     </div>
@@ -79,7 +132,11 @@
     <section class="hero" id="hero">
         <div class="hero-left">
             <div class="availability-tag">🟢 Open to Opportunities</div>
-            <h1 class="hero-title">Mohammed Emad Hamdy</h1>
+            <h1 class="hero-title" aria-label="Mohammed Emad Hamdy">
+                <span class="hero-name-word">Mohammed</span>
+                <span class="hero-name-word">Emad</span>
+                <span class="hero-name-word">Hamdy</span>
+            </h1>
             <p class="hero-subtitle">Data Engineer & AI Specialist</p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary">Get In Touch</a>
@@ -92,7 +149,7 @@
             <div class="card-ring"></div>
             <div class="avatar-card" id="heroAvatarCard">
                 <div class="avatar-photo-wrapper">
-                    <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad Hamdy" class="avatar-photo">
+                    <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad Hamdy" class="avatar-photo" width="140" height="140" fetchpriority="high" decoding="async">
                     <div class="avatar-status-badge">
                         <span class="status-indicator"></span> Data Engineer
                     </div>
@@ -172,7 +229,7 @@
                     <div class="about-card-glow"></div>
                     <div class="about-card-inner">
                         <div class="about-img-container">
-                            <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad at Upper Egypt AI Hackathon" class="about-img">
+                            <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad at Upper Egypt AI Hackathon" class="about-img" width="140" height="160" loading="lazy" decoding="async">
                             <span class="img-badge hackathon-badge">🏆 Upper Egypt AI Hackathon</span>
                         </div>
                         <div class="about-card-info">
@@ -187,7 +244,7 @@
                     <div class="about-card-glow"></div>
                     <div class="about-card-inner">
                         <div class="about-img-container">
-                            <img src="images/mohammed-speaker.jpeg" alt="Mohammed Emad Presenting on Stage" class="about-img">
+                            <img src="images/mohammed-speaker.jpeg" alt="Mohammed Emad Presenting on Stage" class="about-img" width="140" height="160" loading="lazy" decoding="async">
                             <span class="img-badge speaker-badge">🎙️ Tech Speaker & Pitching</span>
                         </div>
                         <div class="about-card-info">
@@ -934,7 +991,7 @@
                     <div class="ripple-ring"></div>
                     <div class="ripple-ring"></div>
                     <div class="avatar-center">
-                        <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad Hamdy" class="contact-avatar-img">
+                        <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad Hamdy" class="contact-avatar-img" width="120" height="120" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
