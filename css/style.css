@@ -2127,7 +2127,7 @@ body.intro-active { overflow-x: hidden; }
 
 .intro-kicker { margin-bottom: 1.5rem; color: var(--accent-amber); font: 700 0.7rem/1 'DM Sans', sans-serif; letter-spacing: 0.22em; }
 .intro-kicker span { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; margin-right: 0.65rem; color: #0f0f1e; background: var(--accent-amber); border-radius: 50%; letter-spacing: 0; }
-.intro-copy h1 { max-width: 650px; font: 800 clamp(2.8rem, 6vw, 7.2rem)/0.86 'DM Sans', sans-serif; letter-spacing: 0; }
+.intro-copy h1 { max-width: 100%; font: 800 clamp(2.4rem, 4.8vw, 5.8rem)/0.9 'DM Sans', sans-serif; letter-spacing: 0; }
 .name-line { display: block; overflow: hidden; white-space: nowrap; }
 .name-word { display: inline-block; white-space: nowrap; transform: translateY(115%); opacity: 0; animation: nameWordIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
 .name-line:nth-child(1) .name-word { animation-delay: 0.55s; }
@@ -2209,20 +2209,20 @@ body.intro-active { overflow-x: hidden; }
 @media (max-width: 1100px) {
     .intro-main { grid-template-columns: 1fr; gap: 2.5rem; }
     .intro-copy { max-width: 700px; }
-    .intro-copy h1 { font-size: 2.5rem; }
+    .intro-copy h1 { font-size: 2.2rem; }
     .intro-visual { justify-self: center; }
 }
 
 @media (max-width: 800px) {
     .intro-shell { padding: 1.4rem 1.25rem; }
     .intro-main { grid-template-columns: 1fr; gap: 1.8rem; margin: 1rem 0; }
-    .intro-copy h1 { font-size: 2.3rem; }
+    .intro-copy h1 { font-size: 2rem; }
     .intro-role { margin-top: 1.3rem; }.intro-description { margin-top: 0.7rem; }.enter-button { margin-top: 1.4rem; }
     .intro-visual { width: min(100%, 550px); justify-self: center; }.intro-bottomline { flex-wrap: wrap; justify-content: flex-start; }.intro-terminal { display: none; }.scroll-hint { margin-left: auto; }
 }
 
 @media (max-width: 480px) {
     .intro-topline span:last-child { display: none; }.intro-kicker { margin-bottom: 1rem; font-size: 0.58rem; }.construction-frame { aspect-ratio: 1.05; }.stage { min-width: 66px; padding: 0.5rem; }.stage span { font-size: 0.65rem; }.stage small { font-size: 0.42rem; }.core-node { width: 90px; height: 90px; }.core-node strong { font-size: 1.1rem; }.core-node small { bottom: 18px; font-size: 0.4rem; }.label-top, .label-bottom { font-size: 0.5rem; }.build-status { font-size: 0.55rem; }.scroll-hint { font-size: 0.55rem; }
-    .intro-copy h1 { font-size: 2rem; }
+    .intro-copy h1 { font-size: 1.8rem; }
 }
 
