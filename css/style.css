@@ -331,18 +331,6 @@
             animation: heroNameIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }
 
-                .hero-final-letter,
-                .name-final-letter {
-                    display: inline-block;
-                    min-width: 0.52em;
-                    margin-left: 0;
-                    color: inherit !important;
-                    font-family: inherit;
-                    font-weight: inherit;
-                    opacity: 1;
-                    text-shadow: none;
-                }
-
         .hero-name-word:nth-child(2) { color: var(--accent-cyan); }
 
         .hero-name-word:nth-child(1) { animation-delay: 2.35s; }
@@ -2140,7 +2128,7 @@ body.intro-active { overflow-x: hidden; }
 .intro-kicker { margin-bottom: 1.5rem; color: var(--accent-amber); font: 700 0.7rem/1 'DM Sans', sans-serif; letter-spacing: 0.22em; }
 .intro-kicker span { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; margin-right: 0.65rem; color: #0f0f1e; background: var(--accent-amber); border-radius: 50%; letter-spacing: 0; }
 .intro-copy h1 { max-width: 650px; font: 800 clamp(2.8rem, 6vw, 7.2rem)/0.86 'DM Sans', sans-serif; letter-spacing: 0; }
-.name-line { display: block; overflow: hidden; }
+.name-line { display: block; overflow: hidden; white-space: nowrap; }
 .name-word { display: inline-block; white-space: nowrap; transform: translateY(115%); opacity: 0; animation: nameWordIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
 .name-line:nth-child(1) .name-word { animation-delay: 0.55s; }
 .name-line:nth-child(2) .name-word:first-child { animation-delay: 0.68s; }
