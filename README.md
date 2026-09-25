@@ -3,10 +3,10 @@
 <div align="center">
 
 <!-- Typing Effect -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=2E5BFF&center=true&vCenter=true&width=600&lines=Data+Engineering+%26+Analytics;Backend+%26+AI+Engineer;Software+Engineering+Student+%40+Assiut+National+University;Building+Scalable+Data+Pipelines" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=2E5BFF&center=true&vCenter=true&width=600&lines=Data+Engineering+%26+Analytics;Backend+%26+AI+Engineer;Software+Engineering+%26+Systems;Building+Scalable+Data+Pipelines" alt="Typing SVG" />
 
 <p align="center">
-  <b>Data Engineering & Analytics| Backend & AI Engineer | Software Engineering Student</b>
+  <b>Data Engineering & Analytics | Backend & AI Engineer | Software Engineering & Systems</b>
 </p>
 
 <!-- Social Badges -->
@@ -26,7 +26,7 @@
 
 ### 🚀 About Me
 
-- 🎓 Software Engineering Student at **Assiut National University**.
+- 🎓 Software Engineering background with a focus on data systems and AI.
 - 💼 Data Engineer Intern at **Digital Egypt Pioneers Initiative (DEPI)**.
 - 🏦 Former Data & AI Summer Intern at **Commercial International Bank (CIB Egypt)** & Backend AI Engineer at **Fly Rank**.
 - 🛠️ Specialized in building scalable **ETL/ELT data pipelines**, **real-time event ingestion**, and **AI-driven backend services**.
