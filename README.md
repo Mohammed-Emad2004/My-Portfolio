@@ -26,9 +26,9 @@
 
 ### 🚀 About Me
 
-- 🎓 Software Engineering background with a focus on data systems and AI.
-- 💼 Data Engineer Intern at **Digital Egypt Pioneers Initiative (DEPI)**.
-- 🏦 Former Data & AI Summer Intern at **Commercial International Bank (CIB Egypt)** & Backend AI Engineer at **Fly Rank**.
+- ⚙️ Software Engineering background focused on data systems and AI.
+- 💼 Data Engineer at **Digital Egypt Pioneers Initiative (DEPI)**.
+- 🏦 Former Data & AI Engineer at **Commercial International Bank (CIB Egypt)** & Backend AI Engineer at **Fly Rank**.
 - 🛠️ Specialized in building scalable **ETL/ELT data pipelines**, **real-time event ingestion**, and **AI-driven backend services**.
 - 💡 Passionate about distributed systems, GenAI/RAG, real-time analytics, and clean code architecture.
 
