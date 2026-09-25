@@ -334,9 +334,13 @@
                 .hero-final-letter,
                 .name-final-letter {
                     display: inline-block;
-                    min-width: 0.52em;
-                    color: inherit;
+                    min-width: 0.58em;
+                    margin-left: 0.06em;
+                    color: var(--accent-cyan) !important;
+                    font-family: 'Syne', sans-serif;
+                    font-weight: 800;
                     opacity: 1;
+                    text-shadow: 0 0 18px rgba(6, 182, 212, 0.6);
                 }
 
         .hero-name-word:nth-child(2) { color: var(--accent-cyan); }
