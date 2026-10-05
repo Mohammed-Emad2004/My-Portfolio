@@ -24,22 +24,17 @@
 
     <title>Mohammed Emad Hamdy | Data Engineer & AI Specialist</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <!-- Local fonts avoid an extra render-blocking request to Google Fonts. -->
+    <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- External CSS -->
-    <link rel="preload" href="css/style.css?v=fit-name-20260925" as="style">
-    <link rel="stylesheet" href="css/style.css?v=fit-name-20260925">
+    <link rel="stylesheet" href="css/style.css?v=ice-20261005">
 
     <!-- External JavaScript -->
-    <script src="js/script.js?v=fit-name-20260925" defer></script>
+    <script src="js/script.js?v=neon-20261005" defer></script>
 </head>
 
-<body>
+<body class="intro-active">
     <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-ring"></div>
@@ -49,6 +44,7 @@
 
     <!-- Animated Portfolio Intro -->
     <div class="loading-screen intro-screen" aria-labelledby="introTitle">
+        <div class="intro-spotlight" aria-hidden="true"></div>
         <div class="intro-noise"></div>
         <div class="intro-grid"></div>
         <div class="cube-field" id="cubeField" aria-hidden="true">
@@ -130,7 +126,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" tabindex="-1">
         <div class="hero-left">
             <div class="availability-tag">🟢 Open to Opportunities</div>
             <h1 class="hero-title" aria-label="Mohammed Emad Hamdy">
@@ -150,7 +146,7 @@
             <div class="card-ring"></div>
             <div class="avatar-card" id="heroAvatarCard">
                 <div class="avatar-photo-wrapper">
-                    <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad Hamdy" class="avatar-photo" width="140" height="140" fetchpriority="high" decoding="async">
+                    <img src="images/mohammed-hackathon.webp" alt="Mohammed Emad Hamdy" class="avatar-photo" width="140" height="140" loading="lazy" decoding="async">
                     <div class="avatar-status-badge">
                         <span class="status-indicator"></span> Data Engineer
                     </div>
@@ -165,7 +161,7 @@
                         <div class="stat-label">Projects</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number" id="ageCounter">22</div>
+                        <div class="stat-number" id="ageCounter">—</div>
                         <div class="stat-label">Age</div>
                     </div>
                     <div class="stat-item">
@@ -230,7 +226,7 @@
                     <div class="about-card-glow"></div>
                     <div class="about-card-inner">
                         <div class="about-img-container">
-                            <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad at Upper Egypt AI Hackathon" class="about-img" width="140" height="160" loading="lazy" decoding="async">
+                            <img src="images/mohammed-hackathon.webp" alt="Mohammed Emad at Upper Egypt AI Hackathon" class="about-img" width="140" height="160" loading="lazy" decoding="async">
                             <span class="img-badge hackathon-badge">🏆 Upper Egypt AI Hackathon</span>
                         </div>
                         <div class="about-card-info">
@@ -245,7 +241,7 @@
                     <div class="about-card-glow"></div>
                     <div class="about-card-inner">
                         <div class="about-img-container">
-                            <img src="images/mohammed-speaker.jpeg" alt="Mohammed Emad Presenting on Stage" class="about-img" width="140" height="160" loading="lazy" decoding="async">
+                            <img src="images/mohammed-speaker.webp" alt="Mohammed Emad Presenting on Stage" class="about-img" width="140" height="160" loading="lazy" decoding="async">
                             <span class="img-badge speaker-badge">🎙️ Tech Speaker & Pitching</span>
                         </div>
                         <div class="about-card-info">
@@ -991,7 +987,7 @@
                     <div class="ripple-ring"></div>
                     <div class="ripple-ring"></div>
                     <div class="avatar-center">
-                        <img src="images/mohammed-hackathon.jpeg" alt="Mohammed Emad Hamdy" class="contact-avatar-img" width="120" height="120" loading="lazy" decoding="async">
+                        <img src="images/mohammed-hackathon.webp" alt="Mohammed Emad Hamdy" class="contact-avatar-img" width="120" height="120" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
