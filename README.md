@@ -35,7 +35,7 @@ A responsive, single-page portfolio showcasing my work in data engineering, AI, 
 - **Desktop interactions:** a custom cursor and hover effects for devices with a fine pointer; touch devices use the native experience.
 - **Accessible motion controls:** respects reduced-motion preferences and pauses decorative effects when the page is hidden or their section is offscreen.
 - **Automatic age:** uses the `Africa/Cairo` calendar, updates on my birthday, and catches up when a suspended tab becomes active again.
-- **Local assets:** self-hosted DM Sans and Syne WOFF2 fonts, WebP photos, and lazy-loaded portfolio images.
+- **Local assets:** self-hosted DM Sans and Syne WOFF2 fonts, a local tab icon, WebP photos, and lazy-loaded portfolio images.
 
 ## Run locally
 
@@ -57,6 +57,7 @@ Open **[127.0.0.1:8080](http://127.0.0.1:8080/)** in your browser. Press `Ctrl+C
 ├── js/
 │   └── script.js                   # Interactions, canvas, and age updates
 ├── images/
+│   ├── favicon.svg                 # Local tab icon with embedded profile photo
 │   ├── mohammed-hackathon.webp
 │   ├── mohammed-speaker.webp
 │   └── mohammed-hackathon.jpeg      # Open Graph and Twitter preview

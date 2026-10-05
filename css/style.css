@@ -23,6 +23,7 @@
         }
 
         :root {
+            color-scheme: dark;
             --primary: #60a5fa;
             --secondary: #93c5fd;
             --accent-cyan: #bae6fd;
@@ -35,6 +36,7 @@
         }
 
         html {
+            background-color: var(--dark-bg);
             scroll-behavior: smooth;
             /* Decorative transforms must not widen the mobile layout viewport. */
             overflow-x: clip;
@@ -1081,9 +1083,16 @@
 
         .job-header {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: start;
+            gap: 0.75rem;
             margin-bottom: 1rem;
+        }
+
+        .job-header > div:first-child {
+            flex: 1 1 14rem;
+            min-width: 0;
         }
 
         .job-title {
@@ -1094,6 +1103,7 @@
         }
 
         .job-badge {
+            flex-shrink: 0;
             background: rgba(219, 234, 254, 0.1);
             color: var(--accent-amber);
             padding: 0.3rem 0.8rem;
@@ -1161,7 +1171,11 @@
             overflow: hidden;
             transition: all 0.4s ease;
             opacity: 0;
-            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .project-card.revealed {
+            opacity: 1;
+            animation: scaleIn 0.6s ease-out backwards;
         }
 
         @keyframes scaleIn {
@@ -1265,7 +1279,11 @@
             padding: 2rem;
             transition: all 0.3s ease;
             opacity: 0;
-            animation: fadeUp 0.6s ease-out forwards;
+        }
+
+        .edu-card.revealed {
+            opacity: 1;
+            animation: fadeUp 0.6s ease-out backwards;
         }
 
         @keyframes fadeUp {
@@ -1367,7 +1385,11 @@
             padding: 1.5rem;
             transition: all 0.3s ease;
             opacity: 0;
-            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .contact-card.revealed {
+            opacity: 1;
+            animation: slideInLeft 0.6s ease-out backwards;
         }
 
         .contact-card:hover {
@@ -1799,9 +1821,18 @@
         align-items: flex-start;
         padding: 2rem 1.5rem;
     }
+    .github-showcase-action {
+        width: 100%;
+        min-width: 0;
+    }
     .btn-github-showcase {
         width: 100%;
         justify-content: center;
+        white-space: normal;
+        text-align: center;
+    }
+    .btn-github-showcase svg {
+        flex-shrink: 0;
     }
 }
 
@@ -1988,12 +2019,12 @@ body.page-hidden,
     opacity: 1 !important;
 }
 
-.intro-screen:has(~ nav ~ #hero:target) {
+.intro-screen:has(~ main #hero:target) {
     position: fixed;
     inset: 0;
     z-index: 9998;
-    visibility: hidden;
-    opacity: 0;
+    visibility: hidden !important;
+    opacity: 0 !important;
     pointer-events: none;
     transition: opacity 0.8s ease, visibility 0s linear 0.8s;
 }
@@ -2148,7 +2179,7 @@ body.page-hidden,
 
 .intro-kicker { margin-bottom: 1.5rem; color: var(--accent-amber); font: 700 0.7rem/1 'DM Sans', sans-serif; letter-spacing: 0.22em; }
 .intro-kicker span { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; margin-right: 0.65rem; color: #080c17; background: var(--accent-amber); border-radius: 50%; letter-spacing: 0; }
-.intro-copy h1 { max-width: 100%; font: 800 clamp(2.4rem, 4.8vw, 5.8rem)/0.9 'DM Sans', sans-serif; letter-spacing: 0; }
+.intro-copy h1 { max-width: 100%; font: 800 clamp(2.4rem, 4.8vw, 4.5rem)/0.9 'DM Sans', sans-serif; letter-spacing: 0; }
 .name-line { display: block; overflow: hidden; white-space: nowrap; }
 .name-word { display: inline-block; white-space: nowrap; transform: translateY(115%); opacity: 0; animation: nameWordIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
 .name-line:nth-child(1) .name-word { animation-delay: 0.55s; }

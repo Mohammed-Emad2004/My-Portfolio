@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Declare the existing dark theme before styles load to prevent recoloring flashes. -->
+    <meta name="color-scheme" content="dark">
+    <meta name="darkreader-lock">
     <meta name="description"
         content="Mohammed Emad Hamdy - Data Engineer & AI Specialist Portfolio. Specializing in high-throughput data pipelines, machine learning, computer vision (YOLOv11), and scalable backend systems.">
     <meta name="keywords"
@@ -23,12 +26,25 @@
     <link rel="canonical" href="https://mohammed-emad2004.github.io/My-Portfolio/">
 
     <title>Mohammed Emad Hamdy | Data Engineer & AI Specialist</title>
+    <link rel="icon" href="images/favicon.svg?v=photo-20261005" type="image/svg+xml" sizes="any">
 
     <!-- Local fonts avoid an extra render-blocking request to Google Fonts. -->
     <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- External CSS -->
-    <link rel="stylesheet" href="css/style.css?v=ice-20261005">
+    <link rel="stylesheet" href="css/style.css?v=review-20261005">
+
+    <noscript>
+        <style>
+            .skill-bar, .project-card, .edu-card, .contact-card, .timeline-item,
+            .category-card, .scroll-reveal, .about-card, .about-chip {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+            }
+            .skill-fill { width: var(--fill-width); }
+        </style>
+    </noscript>
 
     <!-- External JavaScript -->
     <script src="js/script.js?v=neon-20261005" defer></script>
@@ -125,6 +141,7 @@
         </button>
     </nav>
 
+    <main>
     <!-- Hero Section -->
     <section class="hero" id="hero" tabindex="-1">
         <div class="hero-left">
@@ -993,6 +1010,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <footer>
         <p>&copy; 2026 Mohammed Emad Hamdy. Crafted with passion and powered by code.</p>
