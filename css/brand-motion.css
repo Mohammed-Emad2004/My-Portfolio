@@ -1,0 +1,168 @@
+/* The navbar letters move as a mirrored trio; the intro keeps its core mark. */
+.nav-logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0;
+    margin: -0.35rem 0;
+    color: var(--secondary);
+    background: none;
+    background-clip: border-box;
+    -webkit-text-fill-color: initial;
+    text-decoration: none;
+    isolation: isolate;
+}
+
+.brand-wordmark {
+    position: relative;
+    display: inline-block;
+    line-height: 1.15;
+    white-space: nowrap;
+    animation: brandDrift 4.8s ease-in-out infinite;
+    animation-play-state: var(--brand-play-state, var(--decorative-play-state, running));
+}
+
+.brand-ink,
+.brand-glint {
+    display: block;
+    background: linear-gradient(135deg, var(--secondary), var(--accent-amber));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-glint {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(108deg, transparent 36%, rgba(255, 255, 255, 0.95) 48%, var(--accent-cyan) 51%, transparent 64%);
+    background-size: 250% 100%;
+    background-position: 150% 0;
+    opacity: 0;
+    animation: brandSweep 5.6s ease-in-out infinite;
+    animation-play-state: var(--brand-play-state, var(--decorative-play-state, running));
+}
+
+.nav-logo .brand-wordmark {
+    display: inline-flex;
+    align-items: center;
+    animation: none;
+    transition: filter 0.25s ease;
+}
+
+.nav-logo .brand-letter {
+    display: inline-block;
+    --letter-direction: 1;
+    animation: brandLetterWave 4.8s ease-in-out -0.8s infinite;
+    animation-play-state: var(--brand-play-state, var(--decorative-play-state, running));
+}
+
+.nav-logo .brand-letter-center { --letter-direction: -1; }
+
+.nav-logo .brand-ink {
+    background-image: linear-gradient(110deg, var(--primary) 0%, var(--secondary) 22%, var(--accent-cyan) 42%, var(--accent-amber) 50%, var(--accent-cyan) 58%, var(--secondary) 78%, var(--primary) 100%);
+    background-size: 240% 100%;
+    animation: navBrandLight 7.2s ease-in-out -1.6s infinite alternate;
+    animation-play-state: var(--brand-play-state, var(--decorative-play-state, running));
+}
+
+.nav-logo:hover .brand-wordmark,
+.nav-logo:focus-visible .brand-wordmark {
+    filter: drop-shadow(0 0 7px rgba(147, 197, 253, 0.45));
+}
+
+.nav-logo:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 6px;
+    border-radius: 3px;
+}
+
+/* Navigation is covered by the intro; resume when it becomes visible. */
+body.intro-active .nav-logo,
+body.page-hidden .nav-logo {
+    --brand-play-state: paused;
+}
+
+.core-node .brand-ink {
+    background-image: linear-gradient(120deg, var(--text-primary) 22%, var(--accent-amber) 58%, var(--secondary));
+}
+
+.core-node .brand-wordmark {
+    animation-delay: -0.9s;
+}
+
+.core-node .brand-glint {
+    animation-delay: -1.2s;
+}
+
+/* A small travelling arc gives the engine movement without rotating the text. */
+.brand-orbit {
+    position: absolute;
+    inset: -7px;
+    border: 1px solid transparent;
+    border-top-color: var(--accent-cyan);
+    border-right-color: rgba(147, 197, 253, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: brandOrbit 8s linear infinite;
+    animation-play-state: var(--decorative-play-state, running);
+}
+
+.brand-orbit::after {
+    content: '';
+    position: absolute;
+    top: 13%;
+    right: 13%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px rgba(186, 230, 253, 0.7);
+}
+
+@keyframes brandDrift {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-1.5px); }
+}
+
+/* M and H share a phase; E mirrors them around the same resting baseline. */
+@keyframes brandLetterWave {
+    0%, 100% { transform: translateY(calc(-3px * var(--letter-direction))); }
+    50% { transform: translateY(calc(3px * var(--letter-direction))); }
+}
+
+@keyframes navBrandLight {
+    from { background-position: 100% 0; }
+    to { background-position: 0% 0; }
+}
+
+@keyframes brandSweep {
+    0%, 12% { background-position: 150% 0; opacity: 0; }
+    18%, 52% { opacity: 0.85; }
+    60%, 100% { background-position: -50% 0; opacity: 0; }
+}
+
+@keyframes brandOrbit {
+    to { transform: rotate(360deg); }
+}
+
+/* CSS media queries also respond immediately to preference changes. */
+@media (prefers-reduced-motion: reduce) {
+    .brand-wordmark,
+    .brand-glint,
+    .brand-orbit,
+    .nav-logo .brand-letter,
+    .nav-logo .brand-ink {
+        animation: none !important;
+        transform: none;
+    }
+
+    .brand-glint,
+    .brand-orbit {
+        display: none;
+    }
+
+    .nav-logo .brand-wordmark {
+        transition: none;
+    }
+}

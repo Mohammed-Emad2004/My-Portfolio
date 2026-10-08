@@ -53,7 +53,8 @@ Open **[127.0.0.1:8080](http://127.0.0.1:8080/)** in your browser. Press `Ctrl+C
 .
 ├── index.html                      # Content, sections, and sharing metadata
 ├── css/
-│   └── style.css                   # Theme, layouts, and animations
+│   ├── style.css                   # Theme, layouts, and animations
+│   └── brand-motion.css            # Navbar and intro logo animations
 ├── js/
 │   └── script.js                   # Interactions, canvas, and age updates
 ├── images/
@@ -76,6 +77,7 @@ Open **[127.0.0.1:8080](http://127.0.0.1:8080/)** in your browser. Press `Ctrl+C
 | --- | --- |
 | [index.html](index.html) | Personal content, projects, experience, contact links, and social metadata. |
 | [css/style.css](css/style.css) | Colors in `:root`, typography, card styles, and responsive layouts. |
+| [css/brand-motion.css](css/brand-motion.css) | Navbar and intro logo animations and motion preferences. |
 | [js/script.js](js/script.js) | Canvas behavior, cursor interactions, motion controls, and birthdate/timezone settings. |
 | [images/](images/) | Portfolio photos; keep the JPEG preview referenced by the sharing metadata. |
 | [fonts/](fonts/) | Local font files and their license notices. |

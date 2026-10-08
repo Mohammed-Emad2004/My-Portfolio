@@ -1,11 +1,3 @@
-﻿/**
- * ============================================================================
- * Mohammed Emad Hamdy - Personal Portfolio
- * Interactive Functionality & Animations
- * Clean Code Architecture (ES6+)
- * ============================================================================
- */
-
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,10 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         effectsObserver.observe(element);
     });
 
-    /* ==========================================================================
-       01. DYNAMIC AGE CALCULATOR
-       Uses Cairo's calendar and updates at local midnight, including DST.
-       ========================================================================== */
+    // Update the age at Cairo midnight, including daylight saving changes.
     const AgeCalculator = (() => {
         const BIRTH_YEAR = 2004;
         const BIRTH_MONTH = 7;
@@ -100,11 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return { init, calculate };
     })();
 
-    /* ==========================================================================
-       02. CUSTOM CURSOR
-       Smooth animated dot and follower ring with interactive hover states.
-       Disabled on touch/coarse devices for optimal UX.
-       ========================================================================== */
     const CustomCursor = (() => {
         const cursor = document.querySelector('.cursor');
         const cursorRing = document.querySelector('.cursor-ring');
@@ -119,6 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let frame = 0;
             let lastTime = 0;
             let pointerInside = false;
+            let renderedMouseX, renderedMouseY;
+            let hoveringInteractive = false;
+            const interactiveSelector = 'a, button, .tech-chip, .project-card, .category-card, .social-link, .about-card, .about-chip, .avatar-card';
 
             function stop() {
                 cancelAnimationFrame(frame);
@@ -133,7 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const visible = enabled && pointerInside && !document.hidden;
                 cursor.style.opacity = visible ? '1' : '0';
                 cursorRing.style.opacity = visible ? '1' : '0';
-                if (!visible) stop();
+                if (!visible) {
+                    stop();
+                    setHoverState(false);
+                }
+            }
+
+            function setHoverState(isHovering) {
+                if (hoveringInteractive === isHovering) return;
+                hoveringInteractive = isHovering;
+                cursorRing.style.setProperty('--cursor-scale', isHovering ? '1.6' : '1');
+                cursorRing.style.borderColor = isHovering ? 'var(--secondary)' : 'var(--primary)';
+                cursor.style.setProperty('--cursor-scale', isHovering ? '1.5' : '1');
             }
 
             function animateRing(timestamp) {
@@ -150,8 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     ringY = mouseY;
                     lastTime = 0;
                 }
-                cursor.style.setProperty('--cursor-x', `${mouseX - 4}px`);
-                cursor.style.setProperty('--cursor-y', `${mouseY - 4}px`);
+                if (renderedMouseX !== mouseX || renderedMouseY !== mouseY) {
+                    cursor.style.setProperty('--cursor-x', `${mouseX - 4}px`);
+                    cursor.style.setProperty('--cursor-y', `${mouseY - 4}px`);
+                    renderedMouseX = mouseX;
+                    renderedMouseY = mouseY;
+                }
                 cursorRing.style.setProperty('--cursor-x', `${ringX - 15}px`);
                 cursorRing.style.setProperty('--cursor-y', `${ringY - 15}px`);
                 if (!settled) frame = requestAnimationFrame(animateRing);
@@ -173,22 +175,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!frame) frame = requestAnimationFrame(animateRing);
             }, { passive: true });
 
-            // Hover effects on interactive elements
-            const interactives = document.querySelectorAll('a, button, .tech-chip, .project-card, .category-card, .social-link, .about-card, .about-chip, .avatar-card');
-            interactives.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursorRing.style.setProperty('--cursor-scale', '1.6');
-                    cursorRing.style.borderColor = 'var(--secondary)';
-                    cursor.style.setProperty('--cursor-scale', '1.5');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorRing.style.setProperty('--cursor-scale', '1');
-                    cursorRing.style.borderColor = 'var(--primary)';
-                    cursor.style.setProperty('--cursor-scale', '1');
-                });
-            });
+            // Delegation keeps cards, links, and their nested content in one hover state.
+            document.addEventListener('pointerover', event => {
+                if (event.pointerType === 'touch' || !finePointer.matches || prefersReducedMotion) return;
+                setHoverState(event.target instanceof Element && Boolean(event.target.closest(interactiveSelector)));
+            }, { passive: true });
+            document.addEventListener('pointerout', event => {
+                if (event.pointerType === 'touch' || !finePointer.matches || prefersReducedMotion) return;
+                setHoverState(event.relatedTarget instanceof Element && Boolean(event.relatedTarget.closest(interactiveSelector)));
+            }, { passive: true });
 
-            // Hide when mouse leaves viewport
             document.addEventListener('mouseleave', () => {
                 pointerInside = false;
                 syncAvailability();
@@ -202,10 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return { init };
     })();
 
-    /* ==========================================================================
-       03. PARTICLE NETWORK CANVAS
-       High-performance floating network particles with proximity connections.
-       ========================================================================== */
     const ParticleNetwork = (() => {
         const canvas = document.getElementById('particleCanvas');
         if (!canvas) return { init: () => {} };
@@ -354,10 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return { init };
     })();
 
-    /* ==========================================================================
-       04. NAVIGATION & MOBILE MENU
-       Handles smooth scrolling, active link highlighting, and responsive menu.
-       ========================================================================== */
     const Navigation = (() => {
         const nav = document.querySelector('nav');
         const navLinks = document.querySelector('.nav-links');
@@ -382,21 +370,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function init() {
-            // Mobile Menu Toggle
             if (menuToggle && navLinks) {
                 menuToggle.addEventListener('click', (e) => {
                     e.stopPropagation();
                     setMenuState(!navLinks.classList.contains('active'));
                 });
 
-                // Close mobile menu on outside click
                 document.addEventListener('click', (e) => {
                     if (nav && !nav.contains(e.target) && navLinks.classList.contains('active')) {
                         setMenuState(false);
                     }
                 });
 
-                // FIX: Close mobile menu on Escape key for keyboard accessibility
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && navLinks.classList.contains('active')) {
                         setMenuState(false);
@@ -405,13 +390,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // Smooth Scroll & Close Mobile Menu
-            links.forEach(link => {
+            document.querySelectorAll('.nav-logo, .nav-links a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
                     if (targetId && targetId.startsWith('#')) {
                         e.preventDefault();
                         const targetElement = document.querySelector(targetId);
+                        if (targetElement && document.body.classList.contains('intro-active')) {
+                            setMenuState(false);
+                            LoadingScreen.enter(targetElement);
+                            return;
+                        }
                         if (targetElement) {
                             const navHeight = nav ? nav.offsetHeight : 0;
                             const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
@@ -469,10 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return { init };
     })();
 
-    /* ==========================================================================
-       05. SCROLL REVEAL & SKILL BARS
-       IntersectionObserver to reveal elements and trigger animated skill bars.
-       ========================================================================== */
     const ScrollAnimations = (() => {
         function init() {
             const observerOptions = {
@@ -485,14 +470,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('revealed');
 
-                        // FIX: --fill-width is an inline style attribute (not a CSSOM property),
-                        // so getPropertyValue('--fill-width') returns ''. Parse it via getAttribute.
                         const skillFills = entry.target.querySelectorAll('.skill-fill');
                         skillFills.forEach(fill => {
-                            const styleAttr = fill.getAttribute('style') || '';
-                            const match = styleAttr.match(/--fill-width:\s*([^;]+)/);
-                            if (match) {
-                                const targetWidth = match[1].trim();
+                            const targetWidth = fill.style.getPropertyValue('--fill-width').trim();
+                            if (!targetWidth) return;
+                            if (prefersReducedMotion) {
+                                fill.style.width = targetWidth;
+                            } else {
                                 setTimeout(() => {
                                     fill.style.width = targetWidth;
                                 }, 150);
@@ -513,15 +497,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return { init };
     })();
 
-    /* ==========================================================================
-       06. INTERACTIVE CHIPS
-       Click and hover animations for technology cloud chips.
-       ========================================================================== */
     const InteractiveChips = (() => {
         function init() {
             const chips = document.querySelectorAll('.tech-chip');
             chips.forEach(chip => {
                 chip.addEventListener('click', () => {
+                    if (prefersReducedMotion) return;
                     chip.style.transform = 'translateY(-12px) scale(1.08)';
                     setTimeout(() => {
                         chip.style.transform = '';
@@ -533,13 +514,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return { init };
     })();
 
-    /* ==========================================================================
-       07. PORTFOLIO INTRO
-       The intro is intentionally user-controlled so the first screen feels like
-       an opening experience instead of an automatic loading interruption.
-       ========================================================================== */
+    // Keep the opening screen until the visitor enters or follows a section link.
     const LoadingScreen = (() => {
         let hasDismissed = false;
+        let enterPortfolio;
 
         function dismiss(loader, target, cleanup) {
             if (hasDismissed) return;
@@ -572,9 +550,9 @@ document.addEventListener('DOMContentLoaded', () => {
             intro.classList.toggle('reduced-motion', prefersReducedMotion);
 
             document.body.classList.add('intro-active');
-            const enterPortfolio = (event) => {
+            enterPortfolio = (event, target = hero) => {
                 if (event?.type === 'click') event.preventDefault();
-                dismiss(loader, hero, cleanup);
+                dismiss(loader, target, cleanup);
             };
             enterButton.addEventListener('click', enterPortfolio, { once: true });
             scrollButton?.addEventListener('click', enterPortfolio, { once: true });
@@ -726,12 +704,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 motionPreference.removeEventListener('change', resetForMotion);
                 finePointer.removeEventListener('change', resetPointer);
             };
+
+            // Section links should enter the portfolio directly, including #hero.
+            const initialTarget = document.getElementById(window.location.hash.slice(1));
+            if (initialTarget?.matches('main section[id]')) dismiss(loader, initialTarget, cleanup);
         }
 
-        return { init };
+        return { init, enter: (target) => enterPortfolio?.(undefined, target) };
     })();
 
-    // Initialize all modules
     AgeCalculator.init();
     LoadingScreen.init();
     CustomCursor.init();

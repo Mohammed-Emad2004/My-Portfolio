@@ -81,6 +81,7 @@
             height: 100%;
             background-image:
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
             pointer-events: none;
             z-index: 1;
         }
@@ -140,27 +141,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9998;
-            /* FIX: Removed CSS fadeOut animation — JS now handles dismissal exclusively
-               via LoadingScreen.dismiss() to avoid a race condition where both the CSS
-               timer (2s) and JS timer (load + 1500ms) competed to hide the loader. */
             transition: opacity 0.8s ease-out;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-initials {
-            font-size: 4rem;
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent-cyan) 50%, var(--accent-amber) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 30px;
-            animation: pulse 1s ease-in-out infinite;
-            animation-play-state: var(--decorative-play-state, running);
         }
 
         @keyframes pulse {
@@ -172,29 +153,6 @@
 
             50% {
                 opacity: 0.6;
-            }
-        }
-
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(241, 245, 249, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary), var(--accent-cyan), var(--accent-amber));
-            width: 100%;
-            transform: scaleX(0);
-            transform-origin: left;
-            animation: progressFill 2s ease-in-out forwards;
-        }
-
-        @keyframes progressFill {
-            to {
-                transform: scaleX(1);
             }
         }
 
@@ -231,10 +189,6 @@
             font-family: 'Syne', sans-serif;
             font-size: 1.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent-amber) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .nav-links {
@@ -281,7 +235,7 @@
         }
 
         .hero-left {
-            animation: slideInLeft 0.6s ease-out both;
+            animation: none;
         }
 
         @keyframes slideInLeft {
@@ -338,31 +292,10 @@
             display: inline-block;
             white-space: nowrap;
             color: var(--text-primary);
-            animation: heroNameIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+            animation: none;
         }
 
         .hero-name-word:nth-child(2) { color: var(--secondary); }
-
-        .hero-name-word:nth-child(1) { animation-delay: 0.05s; }
-        .hero-name-word:nth-child(2) { animation-delay: 0.12s; }
-        .hero-name-word:nth-child(3) { animation-delay: 0.2s; }
-
-        @keyframes heroNameIn {
-            from { opacity: 0; transform: translateY(18px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes shimmer {
-
-            0%,
-            100% {
-                background-position: 0% center;
-            }
-
-            50% {
-                background-position: 100% center;
-            }
-        }
 
         .hero-subtitle {
             font-size: 1.25rem;
@@ -473,11 +406,12 @@
             box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3), 0 0 30px rgba(96, 165, 250, 0.08);
             animation: heroCardFloat 5s ease-in-out infinite;
             animation-play-state: var(--decorative-play-state, running);
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), translate 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), scale 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .avatar-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            translate: 0 -8px;
+            scale: 1.02;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35), 0 0 40px rgba(96, 165, 250, 0.14);
             border-color: rgba(147, 197, 253, 0.35);
         }
@@ -951,10 +885,7 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             width: 0;
             border-radius: 3px;
-            /* FIX: Use transition instead of auto-playing @keyframes animation.
-               The JS IntersectionObserver sets fill.style.width = targetWidth which
-               triggers this transition. The old fillBar keyframe ran immediately on
-               load, bypassing scroll-reveal and conflicting with the JS logic. */
+            /* Reveal each fill when its skill bar enters the viewport. */
             transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -1316,12 +1247,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .edu-dates {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
         .edu-gpa {
             color: var(--accent-amber);
             font-weight: 600;
@@ -1529,10 +1454,6 @@
             .about-img-container {
                 width: 120px;
                 height: 140px;
-            }
-
-            .nav-links {
-                display: none;
             }
 
             .skills-container {
@@ -2062,6 +1983,7 @@ body.page-hidden,
 .intro-noise {
     opacity: 0.25;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
     mix-blend-mode: screen;
 }
 
@@ -2133,10 +2055,8 @@ body.page-hidden,
     pointer-events: none;
 }
 
-.orbit-one { width: 70vw; height: 70vw; max-width: 900px; max-height: 900px; top: -45%; left: -24%; animation: orbitSpin 28s linear infinite; animation-play-state: var(--decorative-play-state, running); }
-.orbit-two { width: 60vw; height: 60vw; max-width: 760px; max-height: 760px; right: -25%; bottom: -42%; border-color: rgba(147, 197, 253, 0.2); animation: orbitSpin 22s linear infinite reverse; animation-play-state: var(--decorative-play-state, running); }
-
-@keyframes orbitSpin { to { transform: rotate(360deg); } }
+.orbit-one { width: 70vw; height: 70vw; max-width: 900px; max-height: 900px; top: -45%; left: -24%; }
+.orbit-two { width: 60vw; height: 60vw; max-width: 760px; max-height: 760px; right: -25%; bottom: -42%; border-color: rgba(147, 197, 253, 0.2); }
 
 .intro-shell {
     position: relative;
@@ -2174,19 +2094,23 @@ body.page-hidden,
     transition: transform 0.35s ease-out;
 }
 
-.intro-copy { animation: introCopyIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s both; }
-@keyframes introCopyIn { from { opacity: 0; transform: translateX(-35px); } to { opacity: 1; transform: translateX(0); } }
+.intro-copy { animation: introCopyIn 1s ease-out 0.12s both; }
+@keyframes introCopyIn { from { opacity: 0; } to { opacity: 1; } }
 
 .intro-kicker { margin-bottom: 1.5rem; color: var(--accent-amber); font: 700 0.7rem/1 'DM Sans', sans-serif; letter-spacing: 0.22em; }
 .intro-kicker span { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; margin-right: 0.65rem; color: #080c17; background: var(--accent-amber); border-radius: 50%; letter-spacing: 0; }
 .intro-copy h1 { max-width: 100%; font: 800 clamp(2.4rem, 4.8vw, 4.5rem)/0.9 'DM Sans', sans-serif; letter-spacing: 0; }
 .name-line { display: block; overflow: hidden; white-space: nowrap; }
-.name-word { display: inline-block; white-space: nowrap; transform: translateY(115%); opacity: 0; animation: nameWordIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-.name-line:nth-child(1) .name-word { animation-delay: 0.55s; }
-.name-line:nth-child(2) .name-word:first-child { animation-delay: 0.68s; }
-.name-line:nth-child(2) .name-word:last-child { animation-delay: 0.8s; }
+.name-word { display: inline-block; white-space: nowrap; animation: nameWordIn 1.35s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.name-line:nth-child(1) .name-word { animation-delay: 0.25s; }
+.name-line:nth-child(2) .name-word:first-child { animation-delay: 0.4s; }
+.name-line:nth-child(2) .name-word:last-child { animation-delay: 0.55s; }
 .intro-copy h1 em { color: var(--secondary); font-style: normal; text-shadow: 0 0 40px rgba(96, 165, 250, 0.18); }
-@keyframes nameWordIn { to { transform: translateY(0); opacity: 1; } }
+@keyframes nameWordIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .intro-screen.reduced-motion *,
 .intro-screen.reduced-motion *::before,
 .intro-screen.reduced-motion *::after {

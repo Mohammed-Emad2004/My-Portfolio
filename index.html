@@ -32,7 +32,8 @@
     <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- External CSS -->
-    <link rel="stylesheet" href="css/style.css?v=review-20261005">
+    <link rel="stylesheet" href="css/style.css?v=review-20261008">
+    <link rel="stylesheet" href="css/brand-motion.css?v=review-20261008">
 
     <noscript>
         <style>
@@ -43,11 +44,34 @@
                 animation: none !important;
             }
             .skill-fill { width: var(--fill-width); }
+            @media (max-width: 768px) {
+                body, body.intro-active { overflow-x: clip; }
+                nav { position: sticky; flex-wrap: wrap; gap: 0.5rem; }
+                .menu-toggle { display: none; }
+                .nav-links {
+                    position: static;
+                    width: 100%;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 0.25rem 0.75rem;
+                    padding: 0;
+                    background: none;
+                    border: 0;
+                    box-shadow: none;
+                    visibility: visible;
+                    opacity: 1;
+                    transform: none;
+                    pointer-events: auto;
+                }
+                .nav-links li { width: auto; }
+                .nav-links a { padding: 0.5rem 0.25rem; font-size: 0.85rem; }
+                main section[id] { scroll-margin-top: 9rem; }
+            }
         </style>
     </noscript>
 
     <!-- External JavaScript -->
-    <script src="js/script.js?v=neon-20261005" defer></script>
+    <script src="js/script.js?v=review-20261008" defer></script>
 </head>
 
 <body class="intro-active">
@@ -105,7 +129,12 @@
                         <div class="data-column column-two"><span></span><span></span><span></span><span></span></div>
                         <div class="pipeline-line line-one"><i></i><i></i><i></i></div>
                         <div class="pipeline-line line-two"><i></i><i></i></div>
-                        <div class="core-node"><span class="core-pulse"></span><strong>MEH</strong><small>CORE ENGINE</small></div>
+                        <div class="core-node">
+                            <span class="core-pulse"></span>
+                            <span class="brand-orbit" aria-hidden="true"></span>
+                            <strong><span class="brand-wordmark" aria-hidden="true"><span class="brand-ink">MEH</span><span class="brand-glint">MEH</span></span></strong>
+                            <small>CORE ENGINE</small>
+                        </div>
                         <div class="stage stage-source"><b>01</b><span>DATA</span><small>INGEST</small></div>
                         <div class="stage stage-ai"><b>02</b><span>AI</span><small>PROCESS</small></div>
                         <div class="stage stage-api"><b>03</b><span>API</span><small>DEPLOY</small></div>
@@ -124,7 +153,11 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="nav-logo">MEH</div>
+        <a class="nav-logo" href="#hero" aria-label="Mohammed Emad Hamdy — Home">
+            <span class="brand-wordmark brand-letter-group" aria-hidden="true">
+                <span class="brand-letter"><span class="brand-ink">M</span></span><span class="brand-letter brand-letter-center"><span class="brand-ink">E</span></span><span class="brand-letter"><span class="brand-ink">H</span></span>
+            </span>
+        </a>
         <ul class="nav-links">
             <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
