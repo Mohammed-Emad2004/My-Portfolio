@@ -1524,16 +1524,6 @@
             padding: 0 2rem;
         }
 
-        footer {
-            background: rgba(8, 12, 23, 0.8);
-            border-top: 1px solid var(--border-color);
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-secondary);
-            position: relative;
-            z-index: 3;
-        }
-
 /* --- Mobile Menu Toggle Styles --- */
 .menu-toggle {
     display: none;
